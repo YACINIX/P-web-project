@@ -1,7 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-// Compteur panier (même si vide pour l’instant)
+
 $cartCount = 0;
 if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
   foreach ($_SESSION['cart'] as $qty) $cartCount += (int)$qty;
@@ -10,20 +10,52 @@ if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
 <!doctype html>
 <html lang="fr">
 <head>
+
+<link rel="icon" href="Public/icons/Web site Icon.png" type="image/png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Public/css/style.css">
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>E-commerce Project</title>
   <link rel="stylesheet" href="Public/style.css">
+
 </head>
 <body>
 
 <header class="site-header">
-  <nav class="nav">
-    <a href="index.php">Accueil</a>
-    <a href="catalog.php">Catalogue</a>
-    <a href="cart.php">Panier (<span id="cart-count"><?= $cartCount ?></span>)</a>
-    <a href="logout.php">Logout</a>
-  </nav>
+<nav class="nav">
+  <div class="nav-left"></div>
+
+<div class="nav-center">
+  <a href="index.php" class="nav-icon" aria-label="Accueil" title="Accueil">
+    <img src="Public/icons/home.png" alt="Accueil">
+  </a>
+
+  <a href="catalog.php">Catalogue</a>
+  <a href="cart.php">Panier (<span id="cart-count"><?= $cartCount ?></span>)</a>
+
+<div class="search">
+  <button class="search-btn" type="button">Rechercher</button>
+  <form class="search-form" action="catalog.php" method="get">
+    <input class="search-input" type="search" name="q" placeholder="Rechercher..." />
+  </form>
+</div>
+
+</div>
+
+  </div>
+
+  <div class="nav-right">
+
+    <a class="nav-logout" href="logout.php">Logout</a>
+  </div>
+</nav>
+
 </header>
 
 <main class="container">
